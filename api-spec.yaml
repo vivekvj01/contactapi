@@ -5,6 +5,11 @@ info:
   version: 1.0.0
   contact:
     name: Contact Query API Support
+x-sfdc:
+  heroku:
+    authorization:
+      connectedApp: 'MyAppLinkConnectedApp'
+      permissionSet: 'MyAppLinkPermSet'
 servers:
   - url: https://your-app-name.herokuapp.com
     description: Heroku AppLink Production Server
