@@ -1,0 +1,25 @@
+{
+  "name": "contact-query-applink",
+  "version": "1.0.0",
+  "description": "Stripped-down Heroku AppLink app for querying Salesforce contacts",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "fastify": "^4.24.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "heroku",
+    "applink",
+    "salesforce",
+    "contacts",
+    "fastify"
+  ],
+  "author": "",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Contact Query API
+  description: A simple API to query Salesforce contacts using Heroku AppLink
+  version: 1.0.0
+  contact:
+    name: Contact Query API Support
+servers:
+  - url: https://your-app-name.herokuapp.com
+    description: Heroku AppLink Production Server
+paths:
+  /contacts:
+    get:
+      summary: Retrieve a list of contacts
+      description: Retrieves Salesforce contacts from the connected org
+      operationId: getContacts
+      responses:
+        '200':
+          description: A list of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error"
+                  message:
+                    type: string
+                    example: "Error details"
+      tags:
+        - Contacts
+  /health:
+    get:
+      summary: Health Check
+      description: Returns the health status of the API
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2024-01-15T10:30:00.000Z"
+      tags:
+        - Health
+components:
+  schemas:
+    Contact:
+      type: object
+      properties:
+        Id:
+          type: string
+          description: The unique identifier of the contact
+          example: "003000000000001"
+        Name:
+          type: string
+          description: The name of the contact
+          example: "John Doe"
+  securitySchemes:
+    herokuAppLink:
+      type: http
+      scheme: bearer
+      description: Heroku AppLink authentication
+security:
+  - herokuAppLink: []
+tags:
+  - name: Contacts
+    description: Operations related to Salesforce contacts
+  - name: Health
+    description: Health check operations
